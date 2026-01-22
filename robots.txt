@@ -2,4 +2,4 @@ User-agent: *
 Disallow:
 
 Sitemap: https://javascripttutorial.ru/sitemap.xml
-Host: https://javascripttutorial.ru
+Host: javascripttutorial.ru
