@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ru" data-theme="light" style="color-scheme: light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/js-fav.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="yandex-verification" content="3cc3393693e688dd" />
+    <script
+      type="module"
+      crossorigin=""
+      src="/assets/index-ClnHLsAi.js"
+    ></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-Db0338aV.css" />
+    <title>Методы массивов JavaScript</title>
+    <meta
+      name="description"
+      content="Полный разбор методов массивов JavaScript: map, filter, reduce, forEach и другие."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://javascripttutorial.ru/arrmethods" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Методы массивов JavaScript" />
+    <meta
+      property="og:description"
+      content="Полный разбор методов массивов JavaScript: map, filter, reduce, forEach и другие."
+    />
+    <meta
+      property="og:image"
+      content="https://javascripttutorial.ru/JavaScript-Tutorial.svg"
+    />
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div class="header-wrapper">
+          <div class="logo">
+            <a
+              aria-label="JS Tutorial — Home"
+              class="logo"
+              href="/"
+              data-discover="true"
+              ><figure>
+                <img
+                  class="logogo"
+                  alt="JS Tutorial"
+                  src="/assets/javascripttutorial-C2bentdt.svg"
+                /></figure
+            ></a>
+          </div>
+          <nav
+            id="main-navigation"
+            class="header-navigation"
+            aria-label="Main navigation"
+          >
+            <a class="nav-link" href="/" data-discover="true">HOME</a
+            ><a class="nav-link" href="/es6" data-discover="true">ES6</a>
+            <div class="nav-item nav-advanced active">
+              <button
+                class="advanced-button active"
+                aria-haspopup="true"
+                aria-controls="advanced-menu"
+                aria-expanded="false"
+              >
+                ADVANCED ▾
+              </button>
+              <div
+                id="advanced-menu"
+                class="advanced-menu"
+                role="menu"
+                aria-label="Advanced"
+              >
+                <a
+                  role="menuitem"
+                  aria-current="page"
+                  class="menu-link active"
+                  href="/arrmethods"
+                  data-discover="true"
+                  >JavaScript Array Methods</a
+                ><a
+                  role="menuitem"
+                  class="menu-link"
+                  href="/strmethods"
+                  data-discover="true"
+                  >JavaScript String Methods</a
+                ><a
+                  role="menuitem"
+                  class="menu-link"
+                  href="/regexp"
+                  data-discover="true"
+                  >Regular Expressions</a
+                ><a
+                  role="menuitem"
+                  class="menu-link"
+                  href="/esnext"
+                  data-discover="true"
+                  >ES Next</a
+                >
+              </div>
+            </div>
+            <a class="nav-link" href="/bom" data-discover="true">JS BOM</a
+            ><a class="nav-link" href="/dom" data-discover="true">JS DOM</a
+            ><a class="nav-link" href="/webapi" data-discover="true">WEB API</a
+            ><a class="nav-link" href="/react" data-discover="true">REACT</a
+            ><a class="nav-link" href="/reactnative" data-discover="true"
+              >REACT NATIVE</a
+            ><a class="nav-link" href="/nodejs" data-discover="true">NODE.JS</a
+            ><a class="nav-link" href="/ts" data-discover="true">TYPESCRIPT</a>
+          </nav>
+          <div class="header-controls">
+            <button
+              class="theme-toggle light"
+              aria-pressed="false"
+              aria-label="Переключить на тёмную тему"
+              title="Тёмная тема"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="dark-mode-icon"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"
+                ></path>
+                <path
+                  d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+                ></path>
+              </svg></button
+            ><button
+              class="hamburger"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="main-navigation"
+            >
+              <span class="hamburger-box"
+                ><span class="hamburger-inner"></span
+              ></span>
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="main">
+        <div class="article">
+          <h1>JavaScript Array Methods</h1>
+          <div class="entry-content">
+            <p>
+              В этом разделе представлены методы массивов JavaScript,
+              позволяющие эффективно манипулировать массивами.
+            </p>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 1. Свойства массива</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-211" data-discover="true"
+                      >length property</a
+                    >
+                    — рассмотрите, как эффективно использовать свойство длины
+                    массива.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">
+                  Раздел 2. Добавление/удаление элементов
+                </h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-212" data-discover="true"
+                      >push()</a
+                    >
+                    — добавляет один или несколько элементов в конец массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-213" data-discover="true"
+                      >unshift()</a
+                    >
+                    — добавляет один или несколько элементов в начало массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-214" data-discover="true"
+                      >pop()</a
+                    >
+                    — удаляет элемент из конца массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-215" data-discover="true"
+                      >shift()</a
+                    >
+                    — удаляет первый элемент из массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-216" data-discover="true"
+                      >splice()</a
+                    >
+                    — манипулирует элементами массива, удаляя, вставляя и
+                    заменяя элементы.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-217" data-discover="true"
+                      >slice()</a
+                    >
+                    — копирует элементов массива.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 3. Поиск элементов</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-218" data-discover="true"
+                      >indexOf()
+                    </a>
+                    — возвращает первый индекс соответствующего элемента в
+                    массиве.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-219" data-discover="true"
+                      >lastIndexOf()
+                    </a>
+                    — возвращает последний индекс совпадающего элемента в
+                    массиве.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-220" data-discover="true"
+                      >includes()</a
+                    >
+                    — проверяет, находится ли элемент в массиве.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-221" data-discover="true"
+                      >find()</a
+                    >
+                    — поиск элемента в массиве
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-222" data-discover="true"
+                      >findIndex()</a
+                    >
+                    — поиск индекса элемента в массиве.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">
+                  Раздел 4. Методы высокого порядка
+                </h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-223" data-discover="true"
+                      >map()</a
+                    >
+                    — преобразует элементы массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-224" data-discover="true"
+                      >filter()</a
+                    >
+                    — фильтрует элементы в массиве.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-225" data-discover="true"
+                      >reduce()</a
+                    >
+                    — уменьшает элементы массива до значения.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-226" data-discover="true"
+                      >reduceRight()</a
+                    >
+                    — уменьшает элементы массива справа налево до значения.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-227" data-discover="true"
+                      >every()</a
+                    >
+                    — проверяет, проходит ли каждый элемент массива тест.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-228" data-discover="true"
+                      >some()</a
+                    >
+                    — проверяет, прошел ли тест хотя бы один элемент массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-229" data-discover="true"
+                      >sort()</a
+                    >
+                    — сортировка элементов в массиве.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-230" data-discover="true"
+                      >forEach()</a
+                    >
+                    — цикл по элементам массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-231" data-discover="true"
+                      >with()</a
+                    >
+                    — возвращает новый массив, в котором элемент по указанному
+                    индексу заменен новым.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">
+                  Раздел 5. Манипулирование массивами
+                </h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-232" data-discover="true"
+                      >concat()</a
+                    >
+                    — объединяет два массива в массив.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 6. Создание массивов</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-233" data-discover="true"
+                      >of()</a
+                    >
+                    — улучшенное создание массива.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-234" data-discover="true"
+                      >from()</a
+                    >
+                    — создает массивы из массивоподобных или итерируемых
+                    объектов.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 7. Сглаживание массивов</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-235" data-discover="true"
+                      >flat()</a
+                    >
+                    — рекурсивно выравнивает массив до указанной глубины.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-236" data-discover="true"
+                      >flatMap()</a
+                    >
+                    — выполняет функцию сопоставления для каждого элемента и
+                    выравнивает результат.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 8. Массивы в строки</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-237" data-discover="true"
+                      >join()</a
+                    >
+                    — объединяет все элементы массива в строку, разделяя их
+                    разделителем.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 9. Расширенные операции</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-201" data-discover="true"
+                      >Деструктуризация</a
+                    >
+                    — рассмотрите, как присваивать элементы массива переменным.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-199" data-discover="true"
+                      >Оператор spread</a
+                    >
+                    — узнайте, как эффективно использовать оператор спреда.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 10. Доступ к элементам</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-238" data-discover="true"
+                      >at()</a
+                    >
+                    — доступ к элементам массива с использованием как
+                    положительных, так и отрицательных индексов.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">
+                  Раздел 11. Реверсивные элементы
+                </h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-239" data-discover="true"
+                      >reverse()</a
+                    >
+                    — меняет порядок элементов на обратный и возвращает тот же
+                    массив с элементами в обратном порядке.
+                  </li>
+                  <li>
+                    <a class="Link" href="/js/js-1-240" data-discover="true"
+                      >toReversed()</a
+                    >
+                    — меняет порядок элементов массива на обратный и возвращает
+                    новый массив с элементами в обратном порядке.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="wp-block-group">
+              <div
+                class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"
+              >
+                <h2 class="wp-block-heading">Раздел 12. Многомерный массив</h2>
+                <ul class="wp-block-list">
+                  <li>
+                    <a class="Link" href="/js/js-1-241" data-discover="true"
+                      >Многомерный массив</a
+                    >
+                    — узнайте, как работать с многомерными массивами в
+                    JavaScript.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer id="colophon" class="site-footer">
+        <div class="site-footer-widgets">
+          <div class="site-footer-sidebar widget">
+            <h2 class="widget-title">О РУКОВОДСТВЕ ПО JAVASCRIPT</h2>
+            <div class="textwidget">
+              Сайт JavaScript Tutorial поможет вам быстро и эффективно освоить
+              программирование на JavaScript с нуля.
+            </div>
+          </div>
+          <div class="site-footer-sidebar widget">
+            <h2 class="widget-title">References</h2>
+            <div class="menu-references-container">
+              <ul id="menu-references" class="menu">
+                <li>
+                  <a class="" href="/JsArrayMethods" data-discover="true"
+                    >JavaScript Array Methods</a
+                  >
+                </li>
+                <li>
+                  <a class="" href="/JsStringMethods" data-discover="true"
+                    >JavaScript String Methods</a
+                  >
+                </li>
+                <li>
+                  <a class="" href="/RegularExpressions" data-discover="true"
+                    >Regular Expressions</a
+                  >
+                </li>
+                <li>
+                  <a class="" href="/ESNext" data-discover="true">ES Next</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="site-footer-sidebar widget">
+            <h2 class="widget-title">Site Links</h2>
+            <div class="menu-footer-container">
+              <ul id="menu-footer" class="menu">
+                <li id="menu-item-donation" class="menu-item">
+                  <button
+                    type="button"
+                    class="dropdown-toggle"
+                    aria-expanded="false"
+                    aria-controls="dropdown-donation"
+                  >
+                    Пожертвования ❤️
+                  </button>
+                  <div
+                    id="dropdown-donation"
+                    class="footer-dropdown"
+                    role="region"
+                    aria-hidden="true"
+                  >
+                    <div class="footer-dropdown-inner">;)</div>
+                  </div>
+                </li>
+                <li id="menu-item-about" class="menu-item">
+                  <button
+                    type="button"
+                    class="dropdown-toggle"
+                    aria-expanded="false"
+                    aria-controls="dropdown-about"
+                  >
+                    О проекте
+                  </button>
+                  <div
+                    id="dropdown-about"
+                    class="footer-dropdown"
+                    role="region"
+                    aria-hidden="true"
+                  >
+                    <div class="footer-dropdown-inner">
+                      Данный сайт является переводом с английского
+                      https://www.javascripttutorial.net/
+                    </div>
+                  </div>
+                </li>
+                <li id="menu-item-contact" class="menu-item">
+                  <button
+                    type="button"
+                    class="dropdown-toggle"
+                    aria-expanded="false"
+                    aria-controls="dropdown-contact"
+                  >
+                    Контакты
+                  </button>
+                  <div
+                    id="dropdown-contact"
+                    class="footer-dropdown"
+                    role="region"
+                    aria-hidden="true"
+                  >
+                    <div class="footer-dropdown-inner">
+                      Связаться можно по email: ivanov-91@list.ru
+                    </div>
+                  </div>
+                </li>
+                <li id="menu-item-privacy" class="menu-item">
+                  <button
+                    type="button"
+                    class="dropdown-toggle"
+                    aria-expanded="false"
+                    aria-controls="dropdown-privacy"
+                  >
+                    Privacy Policy
+                  </button>
+                  <div
+                    id="dropdown-privacy"
+                    class="footer-dropdown"
+                    role="region"
+                    aria-hidden="true"
+                  >
+                    <div class="footer-dropdown-inner">
+                      Никакие данные не собираются, ибо незачем. Сайт ничего не
+                      рекламирует, и не продаёт.
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="site-info">
+          <div class="textwidget custom-html-widget">
+            <p>© 2025 Project_JsTutorial. Все права не защищены.</p>
+          </div>
+        </div>
+      </footer>
+      <button class="back-to-top" aria-label="Back to top" title="Back to top">
+        <svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M12 6l-8 8h16z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
